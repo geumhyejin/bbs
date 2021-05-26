@@ -14,6 +14,7 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 	PreparedStatement psmt;
 	ResultSet rs;
 
+	// 모든리스트가 page 10개씩 
 	public List<NoticeVO> noticeListPaging(int page) {
 		String sql = "select b.* \r\n" //
 				+ "from (select rownum rn, a.* \r\n" + "         from(select * from notice order by id)a \r\n"
@@ -60,6 +61,7 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
+				
 				NoticeVO vo = new NoticeVO();
 				vo.setId(rs.getInt("id"));
 				vo.setTitle(rs.getString("title"));
@@ -80,20 +82,21 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 	// 한건 조회
 	@Override
 	public NoticeVO noticeSelect(NoticeVO vo) {
-		String sql = "select from notice where id = ?";
+		String sql = "select * from notice where id = ?";
 		NoticeVO rvo = null;
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setInt(1, vo.getId());
 			rs = psmt.executeQuery();
 			if (rs.next()) {
-
+				hitCount(vo.getId());
 				rvo = new NoticeVO();
 				rvo.setId(rs.getInt("id"));
 				rvo.setTitle(rs.getString("title"));
 				rvo.setContent(rs.getString("content"));
 				rvo.setRegDate(rs.getDate("reg_date"));
 				rvo.setHit(rs.getInt("hit"));
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,20 +126,18 @@ public class NoticeServiceImpl extends DAO implements NoticeService {
 
 	public void hitCount(int id) {
 		String sql = "update notice set hit = hit + 1 where id=?";
-		NoticeVO vo = new NoticeVO();
 		try {
+			
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, vo.getId());
-			rs = psmt.executeQuery();
-			if (rs.next()) {
-
+			psmt.setInt(1, id);
+			
+			int n = psmt.executeUpdate();
+			if(n!=0) {
+				System.out.println(id +"글 조회수 증가");
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			close();
-		}
+		} 
 
 	}
 

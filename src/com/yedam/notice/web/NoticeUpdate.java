@@ -14,21 +14,28 @@ public class NoticeUpdate implements DbCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		//파라메타로 넘겨준 (id, title, content)
-		//serviceImpl -> update기능작성
-		//공지사항 리스트로 페이지 호출
-		NoticeVO vo= new NoticeVO();
-		NoticeServiceImpl impl = new NoticeServiceImpl();
-	 int hit = request.getParameter(hit);
-	 for (hit= 0; hit)
-		
-		//NoticeList commad = new NoticeList();
-		//String path = commad.execute(request, response);
-		
-		//List<NoticeVO> list = (List<NoticeVO>) request.getAttribute(path);
-		
-		
-		
+		// 파라메타로 넘겨준 (id, title, content)
+		// serviceImpl -> update기능작성
+		// 공지사항 리스트로 페이지 호출
+
+		String id = request.getParameter("id");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String regDate = request.getParameter("regDate");
+		String hit = request.getParameter("hit");
+
+//		NoticeVO vo = new NoticeVO();
+//		vo.setId(id);
+//		vo.setTitle(title);
+//		vo.setContent(content);
+//		vo.setRegDate(regDate);
+//		vo.setHit(hit);
+
+		// NoticeList commad = new NoticeList();
+		// String path = commad.execute(request, response);
+
+		// List<NoticeVO> list = (List<NoticeVO>) request.getAttribute(path);
+
 		return "notice/noticeList.tiles";
 	}
 

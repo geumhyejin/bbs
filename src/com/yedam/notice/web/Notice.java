@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.common.DbCommand;
+import com.yedam.notice.Impl.NoticeServiceImpl;
+import com.yedam.notice.service.NoticeService;
 import com.yedam.notice.vo.NoticeVO;
 
 public class Notice implements DbCommand {
@@ -13,10 +15,13 @@ public class Notice implements DbCommand {
 		// 한건조회
 		// serviceImpl 구현
 		String id = request.getParameter("id");
-		
-		// 여러분의 구현
 		NoticeVO vo = new NoticeVO();
-		request.setAttribute("notice", vo);
+		vo.setId(Integer.parseInt(id));
+		
+		NoticeService service = new NoticeServiceImpl();
+		NoticeVO rvo = service.noticeSelect(vo);
+		// 여러분의 구현
+		request.setAttribute("notice", rvo);
 		return "notice/notice.tiles";
 	}
 

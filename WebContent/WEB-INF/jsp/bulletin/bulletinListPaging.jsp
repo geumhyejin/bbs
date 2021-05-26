@@ -43,16 +43,13 @@
 		frm.submit();
 	}
 	function goPage(page) {
-		location.href = "noticeListPaging.do?page=" + page;
+		location.href = "bulletinListPaging.do?page=" + page;
 	}
-	
-
-
 </script>
 </head>
 <body>
-	<h3>공지사항 리스트</h3>
-	<form id ="frm" action="notice.do" method="post">
+	<h3>게시글</h3>
+	<form id ="frm" action="bulletin.do" method="post">
 		<input type ="hidden" id="id" name ="id">
 	</form>
 	<div align="center">
@@ -64,7 +61,7 @@
 					<th width="150">작성일자</th>
 					<th width="100">조회수</th>
 				</tr>
-				<c:forEach items="${noticeList }" var="vo"><!-- noticeListPage.java 에request.setAttribute("noticeList", list); 이름이 동일해야됨-->
+				<c:forEach items="${bulletinList }" var="vo"><!-- noticeListPage.java 에request.setAttribute("noticeList", list); 이름이 동일해야됨-->
 				<tr onclick="formSubmit(${vo.id})">
 						<td>${vo.id }</td>
 						<td>${vo.title }</td>
@@ -77,7 +74,7 @@
 				<button type="button" onclick="location.href='main.do'">
 				첫페이지</button>
 				<c:if test="${id eq 'admin' }">
-					<button type="button" onclick="location.href='noticeForm.do'">등록</button>
+					<button type="button" onclick="location.href='bulletinForm.do'">등록</button>
 				</c:if>
 			</div>
 		</div>

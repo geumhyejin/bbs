@@ -10,12 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.bullentin.web.BulletinForm;
+import com.yedam.bullentin.web.BulletinInsert;
+import com.yedam.bullentin.web.Bulletin;
+import com.yedam.bullentin.web.BulletinList;
 import com.yedam.member.web.MemberJoin;
 import com.yedam.member.web.MemberJoinForm;
 import com.yedam.member.web.MemberLogOut;
 import com.yedam.member.web.MemberLogin;
 import com.yedam.member.web.MemberLoginForm;
-
 import com.yedam.notice.web.Notice;
 import com.yedam.notice.web.NoticeList;
 import com.yedam.notice.web.NoticeListPage;
@@ -42,6 +45,13 @@ public class FrontController extends HttpServlet {
 		map.put("/noticeListPaging.do", new NoticeListPage());
 		map.put("/notice.do", new Notice());
 		map.put("/noticeUpdate.do", new NoticeUpdate());
+		
+		
+		//게시글관련
+		map.put("/bulletinList.do", new BulletinList());
+		map.put("/bulletinForm.do", new BulletinForm());
+		map.put("/bulletinInsert.do", new BulletinInsert());
+		map.put("/bulletin.do", new Bulletin());
 	}
 
 	@Override

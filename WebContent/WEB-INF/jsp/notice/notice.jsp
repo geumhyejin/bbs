@@ -37,11 +37,11 @@
 		</tr>
 		<tr>
 		<th>내용</th>
-		<td colspan="5"><textarea id="ccontent" row="6" cols="90">${notice.title }</textarea></td>
+		<td colspan="5"><textarea id="ccontent" rows="6" cols="90">${notice.title }</textarea></td>
 		</tr>
 	</table>
 	<div>
-		<button type="button" onclick="location.href='noticeList.do'">목록보기</button>
+		<button type="button" onclick="location.href='noticeListPaging.do'">목록보기</button>
 		<c:if test="${id eq 'admin' }">
 		<button type="button" onclick="noticeUpdate()">수정</button>
 		</c:if>
