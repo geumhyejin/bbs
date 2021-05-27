@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>cartList.jsp</title>
 </head>
 <body>
-	<jsp:forward page="index.do"></jsp:forward>
+
 </body>
 </html>

@@ -5,5 +5,5 @@
 <h1>Welcome to Home Guest</h1>
 </c:if>
 <c:if test="${not empty member }">
-<h1>Welcome to Home ${member.name }</h1>
+
 </c:if>
